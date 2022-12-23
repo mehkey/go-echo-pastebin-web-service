@@ -1,4 +1,4 @@
-module github.com/mehkey/restful-go-api/database
+module github.com/mehkey/go-pastebin-web-service/database
 
 go 1.16
 
