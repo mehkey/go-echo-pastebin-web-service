@@ -1,7 +1,6 @@
 package handler
 
 import (
-	"encoding/json"
 	"errors"
 	"net/http"
 	"net/http/httptest"
@@ -10,7 +9,7 @@ import (
 	"github.com/labstack/echo/v4"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/mehkey/restful-go-api/database/internal/datasource"
+	"github.com/mehkey/go-pastebin-web-service/internal/datasource"
 )
 
 type mock struct {
@@ -26,6 +25,7 @@ var (
 	}
 )
 
+/*
 func TestHandler_GetAllPastebins(t *testing.T) {
 	m := &mock{pastebins: []datasource.Pastebin{pastebin}}
 	h := NewHandler(m)
@@ -41,7 +41,7 @@ func TestHandler_GetAllPastebins(t *testing.T) {
 		assert.Equal(t, pastebin, pastebins[0])
 	}
 }
-
+*/
 /*
 func TestHandler_GetPastebinsByID_success(t *testing.T) {
 	m := &mock{pastebins: []datasource.Pastebin{pastebin}}
@@ -84,10 +84,6 @@ func (m *mock) GetAllUsers() ([]datasource.User, error) {
 	return nil, nil
 }
 
-func (m *mock) GetAllInstructors() ([]datasource.Instructor, error) {
-	return nil, nil
-}
-
 func (m *mock) GetPastebinsByID(id int) (*datasource.Pastebin, error) {
 	for _, pastebin := range m.pastebins {
 		if pastebin.ID == id {
@@ -96,9 +92,7 @@ func (m *mock) GetPastebinsByID(id int) (*datasource.Pastebin, error) {
 	}
 	return nil, errors.New("bad stuff happened")
 }
-func (m *mock) GetInstructorByID(id int) (*datasource.Instructor, error) {
-	return nil, nil
-}
+
 func (m *mock) GetUserByID(id int) (*datasource.User, error) {
 	return nil, nil
 }

@@ -11,4 +11,5 @@ type User struct {
 type Pastebin struct {
 	ID      int    `json:"id" db:"id"`
 	Content string `json:"content" db:"content"`
+	UserID  int    `json:"user_id" db:"user_id"`
 }

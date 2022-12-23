@@ -1,7 +1,7 @@
 package handler
 
 import (
-	"github.com/mehkey/restful-go-api/database/internal/datasource"
+	"github.com/mehkey/go-pastebin-web-service/internal/datasource"
 )
 
 type Handler struct {

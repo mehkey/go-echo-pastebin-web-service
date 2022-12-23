@@ -5,7 +5,7 @@ import (
 	"net/http"
 
 	"github.com/labstack/echo/v4"
-	"github.com/mehkey/restful-go-api/database/pkg/middleware"
+	"github.com/mehkey/go-pastebin-web-service/pkg/middleware"
 )
 
 func Authenticated(c echo.Context) error {

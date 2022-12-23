@@ -8,10 +8,10 @@ import (
 	"github.com/labstack/echo/v4"
 	echoMiddleware "github.com/labstack/echo/v4/middleware"
 
-	"github.com/mehkey/go-pastebin-web-service/database/internal/datasource"
-	"github.com/mehkey/go-pastebin-web-service/database/internal/handler"
-	"github.com/mehkey/go-pastebin-web-service/database/pkg/database"
-	"github.com/mehkey/go-pastebin-web-service/database/pkg/middleware"
+	"github.com/mehkey/go-pastebin-web-service/internal/datasource"
+	"github.com/mehkey/go-pastebin-web-service/internal/handler"
+	"github.com/mehkey/go-pastebin-web-service/pkg/database"
+	"github.com/mehkey/go-pastebin-web-service/pkg/middleware"
 
 	_ "github.com/joho/godotenv/autoload"
 )
@@ -53,15 +53,15 @@ func main() {
 	api := e.Group("/api/v1")
 
 	api.GET("/users", h.GetAllUsers)
-	api.GET("/pastebins", h.GetAllPastebins)
+	//api.GET("/pastebins", h.GetAllPastebins)
 
 	api.GET("/users/:id", h.GetUserByID)
-	api.GET("/pastebin/:id", h.GetPastebinByID)
+	//api.GET("/pastebin/:id", h.GetPastebinByID)
 
-	api.GET("/pastebins/user/:userID", h.GetPastebinsForUser)
+	//api.GET("/pastebins/user/:userID", h.GetPastebinsForUser)
 
 	api.POST("/users", h.CreateNewUser)
-	api.POST("/users/:id/pastebins", h.AddUserPastebin)
+	//api.POST("/users/:id/pastebins", h.AddUserPastebin)
 
 	port := "7999"
 

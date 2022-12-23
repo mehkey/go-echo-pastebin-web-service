@@ -18,7 +18,7 @@ func NewPostgres(pool *pgxpool.Pool) *postgres {
 
 func (p *postgres) GetAllUsers() ([]User, error) {
 	var users []User
-	rows, err := p.pool.Query(context.Background(), `select u.id, u.name, u.emailfrom "Users" as u`)
+	rows, err := p.pool.Query(context.Background(), `select u.id, u.name, u.email from "Users" as u`)
 	if err != nil {
 		return nil, err
 	}
