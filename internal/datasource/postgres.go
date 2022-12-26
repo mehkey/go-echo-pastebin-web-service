@@ -38,7 +38,7 @@ func (p *postgres) GetAllUsers() ([]User, error) {
 func (p *postgres) GetUserByID(id int) (*User, error) {
 	var user User
 	err := p.pool.QueryRow(context.Background(),
-		`select u.id, u.name, u.email, u.company, agg.interests
+		`select u.id, u.name, u.email
 		from "Users" as u
 		where u.id = $1;`, id).Scan(&user.ID, &user.Name, &user.Email)
 	if err != nil {
@@ -51,7 +51,7 @@ func (p *postgres) GetPastebinsForUser(userID int) ([]Pastebin, error) {
 	var pastebins []Pastebin
 
 	rows, err := p.pool.Query(context.Background(),
-		`select c.id, c.content, c."instructorId"
+		`select c.id, c.content. c.user_id
 		  	from  "Users" as u 
 			left join "Pastebins" as c on c.user_id = u."id";`, userID)
 	if err != nil {
