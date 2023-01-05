@@ -47,6 +47,32 @@ func (p *postgres) GetUserByID(id int) (*User, error) {
 	return &user, nil
 }
 
+func (p *postgres) GetAllPastebins() ([]Pastebin, error) {
+	var pastebins []Pastebin
+
+	rows, err := p.pool.Query(context.Background(),
+		`select c.id, c.content. c.user_id
+		  	from "Pastebins" as c ;`)
+
+	if err != nil {
+		return nil, err
+	}
+
+	for rows.Next() {
+
+		var pastebin Pastebin
+
+		err = rows.Scan(&pastebin.ID, &pastebin.Content, &pastebin.UserID)
+		if err != nil {
+			return nil, err
+		}
+
+		pastebins = append(pastebins, pastebin)
+	}
+
+	return pastebins, nil
+}
+
 func (p *postgres) GetPastebinsForUser(userID int) ([]Pastebin, error) {
 	var pastebins []Pastebin
 

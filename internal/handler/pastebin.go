@@ -6,14 +6,13 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-/*
 func (h *Handler) GetAllPastebins(c echo.Context) error {
 	courses, err := h.DB.GetAllPastebins()
 	if err != nil {
 		return echo.NewHTTPError(http.StatusInternalServerError, "error fetching data")
 	}
 	return c.JSON(http.StatusOK, courses)
-}*/
+}
 
 /*
 func (h *Handler) GetPastebinByID(c echo.Context) error {
@@ -35,7 +34,7 @@ func (h *Handler) GetPastebinByID(c echo.Context) error {
 	return c.JSON(http.StatusOK, course)
 }*/
 
-func (h *Handler) GetPastebinForUser(c echo.Context) error {
+func (h *Handler) GetPastebinsForUser(c echo.Context) error {
 	id := -1
 	if err := echo.PathParamsBinder(c).Int("userID", &id).BindError(); err != nil {
 		return echo.NewHTTPError(http.StatusBadRequest, "invalid path param")

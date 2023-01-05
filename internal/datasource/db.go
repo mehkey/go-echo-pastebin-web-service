@@ -2,7 +2,7 @@ package datasource
 
 type DB interface {
 	//GET Services
-	//GetAllPastebins() ([]Pastebin, error)
+	GetAllPastebins() ([]Pastebin, error)
 	GetAllUsers() ([]User, error)
 	//GetPastebinByID(int) (*Pastebin, error)
 	GetUserByID(int) (*User, error)
