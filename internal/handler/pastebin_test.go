@@ -62,6 +62,7 @@ func TestHandler_GetPastebinsByID_success(t *testing.T) {
 	}
 }
 */
+
 func TestHandler_GetPastebinsByID_failure(t *testing.T) {
 	m := &mock{pastebins: []datasource.Pastebin{pastebin}}
 	h := NewHandler(m)
@@ -84,7 +85,7 @@ func (m *mock) GetAllUsers() ([]datasource.User, error) {
 	return nil, nil
 }
 
-func (m *mock) GetPastebinsByID(id int) (*datasource.Pastebin, error) {
+func (m *mock) GetPastebinByID(id int) (*datasource.Pastebin, error) {
 	for _, pastebin := range m.pastebins {
 		if pastebin.ID == id {
 			return &pastebin, nil

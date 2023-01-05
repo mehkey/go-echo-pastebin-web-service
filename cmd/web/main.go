@@ -56,7 +56,7 @@ func main() {
 	api.GET("/pastebins", h.GetAllPastebins)
 
 	api.GET("/users/:id", h.GetUserByID)
-	//api.GET("/pastebin/:id", h.GetPastebinByID)
+	api.GET("/pastebin/:id", h.GetPastebinByID)
 
 	api.GET("/pastebins/user/:userID", h.GetPastebinsForUser)
 
