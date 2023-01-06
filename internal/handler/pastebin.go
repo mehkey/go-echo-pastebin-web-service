@@ -10,6 +10,7 @@ import (
 func (h *Handler) GetAllPastebins(c echo.Context) error {
 	courses, err := h.DB.GetAllPastebins()
 	if err != nil {
+		c.Logger().Error(err)
 		return echo.NewHTTPError(http.StatusInternalServerError, "error fetching data")
 	}
 	return c.JSON(http.StatusOK, courses)

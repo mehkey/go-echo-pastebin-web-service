@@ -45,6 +45,7 @@ func main() {
 	specialLogger := echoMiddleware.LoggerWithConfig(echoMiddleware.LoggerConfig{
 		Format: "time=${time_rfc3339} method=${method}, uri=${uri}, status=${status}, latency=${latency_human}, \n",
 	})
+
 	e.Use(middleware.Logger, specialLogger)
 
 	auth := e.Group("/auth")

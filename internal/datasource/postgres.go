@@ -63,8 +63,8 @@ func (p *postgres) GetAllPastebins() ([]Pastebin, error) {
 	var pastebins []Pastebin
 
 	rows, err := p.pool.Query(context.Background(),
-		`select c.id, c.content. c.user_id
-		  	from "Pastebins" as c ;`)
+		`select c.id, c.content, c.user_id
+		  	from "Pastebins" as c;`)
 
 	if err != nil {
 		return nil, err

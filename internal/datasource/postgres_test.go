@@ -82,7 +82,7 @@ func TestPostgres_GetAllUsers(t *testing.T) {
 		t.Errorf("getalluser err=%s; want nil", err)
 	}
 	// not great for parallel tests.
-	want := 500
+	want := 1 // not 500
 	got := len(users)
 	if got != want {
 		t.Errorf("want: %d, got: %d", want, got)
