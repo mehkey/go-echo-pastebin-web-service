@@ -74,3 +74,20 @@ User should be able to set a custom time on the pastebin
 
 
 ![Pastebin Design](https://github.com/mehkey/system-design/tree/main/designs/Pastebin)/Untitled9.png)
+
+
+
+```
+
+//commands
+
+go build ./cmd/web
+
+go run ./cmd/web
+
+go test -v   ./internal/datasource 
+go test -v   ./internal/datasource 
+
+psql -U postgres -h localhost postgres
+
+```
