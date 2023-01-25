@@ -80,6 +80,7 @@ User should be able to set a custom time on the pastebin
 ```
 
 //commands
+go mod tidy
 
 go build ./cmd/web
 
