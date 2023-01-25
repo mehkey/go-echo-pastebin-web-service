@@ -47,6 +47,11 @@ func main() {
 	})
 
 	e.Use(middleware.Logger, specialLogger)
+	/*e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
+		AllowOrigins: []string{"*"}, //[]string{"https://labstack.com", "https://labstack.net"},
+		AllowHeaders: []string{echo.HeaderOrigin, echo.HeaderContentType, echo.HeaderAccept},
+	}))*/
+	e.Use(echoMiddleware.CORS())
 
 	auth := e.Group("/auth")
 	auth.Use(middleware.JWT)
