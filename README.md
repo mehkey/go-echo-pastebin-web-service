@@ -83,10 +83,14 @@ User should be able to set a custom time on the pastebin
 
 go build ./cmd/web
 
+go build ./...
+
 go run ./cmd/web
 
 go test -v   ./internal/datasource 
 go test -v   ./internal/datasource 
+
+go test -v ./...
 
 psql -U postgres -h localhost postgres
 
