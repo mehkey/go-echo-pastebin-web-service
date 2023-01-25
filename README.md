@@ -14,16 +14,14 @@
 5. No password to the pastebin
 6. How long is it going to stay up on the website? 90 days.
 User should be able to set a custom time on the pastebin
-
 7. All the content in pastebin is Text only.
 8. Is there a character limit? Maximum words is 1000 words.
-
 9. How many users are create a pastebin every day?
-
 10.  The URL link should be of uniform length. 10 Characters.
 
 
 # Data Schema
+
 ### Users:
 - user_id (pk) 
 - user_name
@@ -37,6 +35,159 @@ User should be able to set a custom time on the pastebin
 - password (optional)
 - creation_date
 - user_id (creator) 
+
+# API 
+
+## `GET /api/v1/users`
+Retrieves a list of all users
+
+## `GET /api/v1/pastebins`
+Retrieves a list of all pastebins
+
+## `GET /api/v1/users/:id`
+Retrieves a specific user by ID
+
+## `GET /api/v1/pastebin/:id`
+Retrieves a specific pastebin by ID
+
+## `GET /api/v1/pastebins/user/:userID`
+Retrieves all pastebins created by a specific user
+
+## `POST /api/v1/users`
+Creates a new user
+
+
+## `GET /api/v1/users`
+Retrieves a list of all users
+
+Example response:
+```json
+[
+    {
+        "id": 1,
+        "name": "John Doe",
+        "email": "johndoe@example.com",
+        "pastebins": ["pb1", "pb2"]
+    },
+    {
+        "id": 2,
+        "name": "Jane Smith",
+        "email": "janesmith@example.com",
+        "pastebins": ["pb3", "pb4"]
+    }
+]
+```
+
+## `GET /api/v1/pastebins`
+Retrieves a list of all pastebins
+
+Example response:
+```json
+[
+    {
+        "id": 1,
+        "content": "Lorem Ipsum",
+        "user_id": 1
+    },
+    {
+        "id": 2,
+        "content": "Dolor sit amet",
+        "user_id": 2
+    }
+]
+```
+
+## `GET /api/v1/users/:id`
+Retrieves a specific user by ID
+
+Example request: `GET /api/v1/users/1`
+
+Example response:
+```json
+{
+    "id": 1,
+    "name": "John Doe",
+    "email": "johndoe@example.com",
+    "pastebins": ["pb1", "pb2"]
+}
+```
+
+## `GET /api/v1/pastebin/:id`
+Retrieves a specific pastebin by ID
+
+Example request: `GET /api/v1/pastebin/1`
+
+Example response:
+```json
+{
+    "id": 1,
+    "content": "Lorem Ipsum",
+    "user_id": 1
+}
+```
+
+## `GET /api/v1/pastebins/user/:userID`
+Retrieves all pastebins created by a specific user
+
+Example request: `GET /api/v1/pastebins/user/1`
+
+Example response:
+```json
+[
+    {
+        "id": 1,
+        "content": "Lorem Ipsum",
+        "user_id": 1
+    },
+    {
+        "id": 2,
+        "content": "Dolor sit amet",
+        "user_id": 1
+    }
+]
+```
+
+## `POST /api/v1/users`
+Create a new user
+
+Example request:
+```json
+{
+    "name": "John Doe",
+    "email": "johndoe@example.com"
+}
+```
+
+Example response
+```json
+{
+    "id": 1,
+    "name": "John Doe",
+    "email": "johndoe@example.com",
+    "pastebins": []
+}
+```
+
+## `POST /api/v1/pastebins`
+Create a new pastebin
+
+Example request:
+```json
+{
+    "content": "Lorem Ipsum",
+    "user_id": 1
+}
+```
+
+Example Response:
+```json
+{
+    "id": 1,
+    "content": "Lorem Ipsum",
+    "user_id": 1
+}
+```
+
 
 # go-pastebin-web-service
 
