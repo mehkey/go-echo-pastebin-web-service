@@ -89,9 +89,9 @@ func (p *postgres) GetPastebinsForUser(userID int) ([]Pastebin, error) {
 	var pastebins []Pastebin
 
 	rows, err := p.pool.Query(context.Background(),
-		`select c.id, c.content. c.user_id
+		`select c.id, c.content, c.user_id
 		  	from  "Users" as u 
-			left join "Pastebins" as c on c.user_id = u."id";`, userID)
+			left join "Pastebins" as c on c.user_id = u."id" where c.user_id = $1;`, userID)
 	if err != nil {
 		return nil, err
 	}
@@ -99,7 +99,7 @@ func (p *postgres) GetPastebinsForUser(userID int) ([]Pastebin, error) {
 	for rows.Next() {
 		var pastebin Pastebin
 
-		err = rows.Scan(&pastebin.ID, &pastebin.Content)
+		err = rows.Scan(&pastebin.ID, &pastebin.Content, &pastebin.UserID)
 		if err != nil {
 			return nil, err
 		}
