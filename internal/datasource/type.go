@@ -7,7 +7,6 @@ type User struct {
 	Pastebins []string `json:"pastebins,omitempty" db:"pastebins"`
 }
 
-// Instructor type represent a instructor for a course
 type Pastebin struct {
 	ID      int    `json:"id" db:"id"`
 	Content string `json:"content" db:"content"`
