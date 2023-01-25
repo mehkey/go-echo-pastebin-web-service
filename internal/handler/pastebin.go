@@ -25,10 +25,12 @@ func (h *Handler) GetPastebinByID(c echo.Context) error {
 	course, err := h.DB.GetPastebinByID(id)
 
 	if err != nil {
+		c.Logger().Error(err)
 		return echo.NewHTTPError(http.StatusInternalServerError, "error fetching data")
 	}
 
 	if course == nil {
+		c.Logger().Error(err)
 		return echo.NewHTTPError(http.StatusNotFound, fmt.Sprintf("course with id : %d not found", id))
 	}
 
@@ -38,10 +40,12 @@ func (h *Handler) GetPastebinByID(c echo.Context) error {
 func (h *Handler) GetPastebinsForUser(c echo.Context) error {
 	id := -1
 	if err := echo.PathParamsBinder(c).Int("userID", &id).BindError(); err != nil {
+		c.Logger().Error(err)
 		return echo.NewHTTPError(http.StatusBadRequest, "invalid path param")
 	}
 	pastebins, err := h.DB.GetPastebinsForUser(id)
 	if err != nil {
+		c.Logger().Error(err)
 		return echo.NewHTTPError(http.StatusInternalServerError, "error fetching data")
 	}
 	return c.JSON(http.StatusOK, pastebins)
