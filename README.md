@@ -1,6 +1,9 @@
 
 [![Go](https://github.com/mehkey/go-echo-pastebin-web-service/actions/workflows/go.yml/badge.svg)](https://github.com/mehkey/go-echo-pastebin-web-service/actions/workflows/go.yml)
 
+Go version of pastebin web service with postgresql database for CRUD using pgx, goku, echo.
+
+
 # go-echo-pastebin-web-service
  Golang version of pastebin web service 
 
