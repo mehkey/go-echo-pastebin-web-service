@@ -4,6 +4,8 @@
 ## [Original Design](https://github.com/mehkey/system-design/tree/main/designs/Pastebin)
 
 
+[![Go](https://github.com/mehkey/go-echo-pastebin-web-service/actions/workflows/go.yml/badge.svg)](https://github.com/mehkey/go-echo-pastebin-web-service/actions/workflows/go.yml)
+
 
 # Functional Requirements
 
