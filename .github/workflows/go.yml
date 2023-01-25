@@ -29,9 +29,8 @@ jobs:
 
     - name: Test
       run: go test -v ./internal/handler/... -coverprofile coverage.out
-    #  run: go test -v ./...
-    
-    - name: Go Coverage Badge  # Pass the `coverage.out` output to this action
+
+    - name: Go Coverage Badge 
       uses: tj-actions/coverage-badge-go@v2
         with:
           filename: coverage.out
