@@ -53,9 +53,11 @@ func main() {
 	}))*/
 	e.Use(echoMiddleware.CORS())
 
-	auth := e.Group("/auth")
-	auth.Use(middleware.JWT)
-	auth.GET("/test", handler.Authenticated)
+	/*
+		auth := e.Group("/auth")
+		auth.Use(middleware.JWT)
+		auth.GET("/test", handler.Authenticated)
+	*/
 	api := e.Group("/api/v1")
 
 	api.GET("/users", h.GetAllUsers)
