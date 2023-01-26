@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	"github.com/labstack/echo/v4"
+	"github.com/mehkey/go-pastebin-web-service/internal/datasource"
 )
 
 func (h *Handler) GetAllPastebins(c echo.Context) error {
@@ -49,4 +50,28 @@ func (h *Handler) GetPastebinsForUser(c echo.Context) error {
 		return echo.NewHTTPError(http.StatusInternalServerError, "error fetching data")
 	}
 	return c.JSON(http.StatusOK, pastebins)
+}
+
+func (h *Handler) AddUserPastebin(c echo.Context) error {
+	c.Request().Header.Add("Content-Type", "application/json")
+
+	id := -1
+	if err := echo.PathParamsBinder(c).Int("id", &id).BindError(); err != nil {
+		return echo.NewHTTPError(http.StatusBadRequest, "invalid path param")
+	}
+
+	if c.Request().ContentLength == 0 {
+		return echo.NewHTTPError(http.StatusBadRequest, "body is required for this method")
+	}
+
+	pastebin := new(datasource.Pastebin)
+	err := c.Bind(&pastebin)
+	if err != nil {
+		return echo.NewHTTPError(http.StatusBadRequest, "body not be valid")
+	}
+	count, err := h.DB.AddUserPastebin(id, pastebin)
+	if err != nil {
+		return echo.NewHTTPError(http.StatusBadRequest, "could not add user pastebin")
+	}
+	return c.JSON(http.StatusCreated, Message{Data: fmt.Sprintf("%d user interest added", count)})
 }
