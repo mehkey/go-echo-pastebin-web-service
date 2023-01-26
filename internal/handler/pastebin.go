@@ -56,10 +56,11 @@ func (h *Handler) AddUserPastebin(c echo.Context) error {
 	c.Request().Header.Add("Content-Type", "application/json")
 
 	id := -1
+
 	if err := echo.PathParamsBinder(c).Int("id", &id).BindError(); err != nil {
 		return echo.NewHTTPError(http.StatusBadRequest, "invalid path param")
 	}
-
+	c.Logger().Print(id)
 	if c.Request().ContentLength == 0 {
 		return echo.NewHTTPError(http.StatusBadRequest, "body is required for this method")
 	}
@@ -73,5 +74,5 @@ func (h *Handler) AddUserPastebin(c echo.Context) error {
 	if err != nil {
 		return echo.NewHTTPError(http.StatusBadRequest, "could not add user pastebin")
 	}
-	return c.JSON(http.StatusCreated, Message{Data: fmt.Sprintf("%d user interest added", count)})
+	return c.JSON(http.StatusCreated, Message{Data: fmt.Sprintf("%d user pastebin added", count)})
 }
