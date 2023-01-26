@@ -50,7 +50,7 @@ Retrieves a list of all users
 ## `GET /api/v1/pastebins`
 Retrieves a list of all pastebins
 
-## `GET /api/v1/users/:id`
+## `GET /api/v1/user/:id`
 Retrieves a specific user by ID
 
 ## `GET /api/v1/pastebin/:id`
@@ -58,9 +58,6 @@ Retrieves a specific pastebin by ID
 
 ## `GET /api/v1/pastebins/user/:userID`
 Retrieves all pastebins created by a specific user
-
-## `GET /api/v1/users`
-Retrieves a list of all users
 
 ## `POST /api/v1/user`
 Creates a new user
@@ -105,10 +102,10 @@ Example response:
 ]
 ```
 
-## `GET /api/v1/users/:id`
+## `GET /api/v1/user/:id`
 Retrieves a specific user by ID
 
-Example request: `GET /api/v1/users/1`
+Example request: `GET /api/v1/user/1`
 
 Example response:
 ```json
@@ -176,7 +173,7 @@ Example response
 }
 ```
 
-## `POST /api/v1/pastebins`
+## `POST /api/v1/pastebin`
 Create a new pastebin
 
 Example request:
