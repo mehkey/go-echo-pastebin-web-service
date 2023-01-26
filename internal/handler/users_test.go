@@ -13,23 +13,23 @@ import (
 )
 
 func TestHandler_GetAllUsers(t *testing.T) {
-	m := &mock{pastebins: []datasource.Pastebin{pastebin}}
+	m := &mock{users: []datasource.User{user}}
 	h := NewHandler(m)
 	e := echo.New()
-	r := httptest.NewRequest(http.MethodGet, "/api/v1/pastebins", nil)
+	r := httptest.NewRequest(http.MethodGet, "/api/v1/users", nil)
 	w := httptest.NewRecorder()
 	c := e.NewContext(r, w)
 
-	if assert.NoError(t, h.GetAllPastebins(c)) {
+	if assert.NoError(t, h.GetAllUsers(c)) {
 		assert.Equal(t, http.StatusOK, w.Code)
-		var pastebins []datasource.Pastebin
-		assert.NoError(t, json.Unmarshal(w.Body.Bytes(), &pastebins))
-		assert.Equal(t, pastebin, pastebins[0])
+		var users []datasource.User
+		assert.NoError(t, json.Unmarshal(w.Body.Bytes(), &users))
+		assert.Equal(t, user, users[0])
 	}
 }
 
 func TestHandler_GetUsersByID_success(t *testing.T) {
-	m := &mock{pastebins: []datasource.Pastebin{pastebin}}
+	m := &mock{users: []datasource.User{user}}
 	h := NewHandler(m)
 	e := echo.New()
 	r := httptest.NewRequest(http.MethodGet, "/api/v1/user/1", nil)
@@ -39,10 +39,10 @@ func TestHandler_GetUsersByID_success(t *testing.T) {
 	c.SetParamNames("id")
 	c.SetParamValues("1")
 
-	if assert.NoError(t, h.GetPastebinByID(c)) {
+	if assert.NoError(t, h.GetUserByID(c)) {
 		assert.Equal(t, http.StatusOK, w.Code)
 		var user *datasource.User
-		assert.NoError(t, json.Unmarshal(w.Body.Bytes(), &pastebin))
+		assert.NoError(t, json.Unmarshal(w.Body.Bytes(), &user))
 		assert.Equal(t, 1, user.ID)
 	}
 }
