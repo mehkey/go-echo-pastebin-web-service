@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"bytes"
 	"encoding/json"
 	"errors"
 	"net/http"
@@ -81,6 +82,56 @@ func TestHandler_GetPastebinsByID_failure(t *testing.T) {
 	c.SetParamValues("5")
 
 	assert.Error(t, h.GetUserByID(c), "should return error")
+
+}
+
+func TestHandler_AddUserPastebin_Success(t *testing.T) {
+	m := &mock{pastebins: []datasource.Pastebin{pastebin}}
+	h := NewHandler(m)
+	e := echo.New()
+
+	s, _ := json.Marshal(pastebin)
+	b := bytes.NewBuffer(s)
+
+	r := httptest.NewRequest(http.MethodPost, "/api/v1/user/1/pastebin", b)
+
+	r.Header.Set("Content-Type", "application/json")
+
+	w := httptest.NewRecorder()
+	c := e.NewContext(r, w)
+	c.SetPath("/api/v1/user/1/pastebin")
+	//c.SetParamNames("id")
+	//c.SetParamValues("1")
+
+	if assert.NoError(t, h.AddUserPastebin(c)) {
+		assert.Equal(t, http.StatusCreated, w.Code)
+		//var pastebin *datasource.Pastebin
+		//assert.NoError(t, json.Unmarshal(w.Body.Bytes(), &pastebin))
+		//assert.Equal(t, 1, pastebin.ID)
+	}
+
+}
+
+func TestHandler_GetPastebinsForUser(t *testing.T) {
+
+	m := &mock{pastebins: []datasource.Pastebin{pastebin}}
+	h := NewHandler(m)
+	e := echo.New()
+	r := httptest.NewRequest(http.MethodGet, "/api/v1/pastebins/user/1", nil)
+	w := httptest.NewRecorder()
+	c := e.NewContext(r, w)
+
+	c.SetPath("/api/v1/pastebins/user/1")
+	c.SetParamNames("userID")
+	c.SetParamValues("1")
+
+	if assert.NoError(t, h.GetPastebinsForUser(c)) {
+		assert.Equal(t, http.StatusOK, w.Code)
+		var pastebins []datasource.Pastebin
+		assert.NoError(t, json.Unmarshal(w.Body.Bytes(), &pastebins))
+		assert.Equal(t, pastebin, pastebins[0])
+	}
+
 }
 
 func (m *mock) GetAllPastebins() ([]datasource.Pastebin, error) {
