@@ -3,7 +3,6 @@ package datasource
 import (
 	"context"
 
-	"github.com/doug-martin/goqu/v9"
 	"github.com/jackc/pgx/v4/pgxpool"
 )
 
@@ -129,7 +128,7 @@ func (p *postgres) CreateNewUser(user *User) (int, error) {
 	return id, nil
 }
 
-func (p *postgres) AddUserPastebin(id int, interests []string) (int, error) {
+func (p *postgres) AddUserPastebin(userId int, pastebin *Pastebin) (int, error) {
 	tx, err := p.pool.Begin(context.Background())
 	if err != nil {
 		return -1, err
@@ -137,18 +136,18 @@ func (p *postgres) AddUserPastebin(id int, interests []string) (int, error) {
 
 	defer tx.Rollback(context.Background())
 
-	var ds *goqu.InsertDataset
-	rows := make([]interface{}, len(interests))
-	for i, interest := range interests {
-		rows[i] = goqu.Record{"userId": id, "topic": interest}
-	}
-	ds = goqu.Insert("UserInterest").Rows(rows)
+	/*
+		var ds *goqu.InsertDataset
+		rows := make([]interface{}, len(interests))
+		for i, interest := range interests {
+			rows[i] = goqu.Record{"userId": id, "topic": interest}
+		}
+		ds = goqu.Insert("UserInterest").Rows(rows)
+	*/
+	var id int
 
-	sql, _, err := ds.ToSQL()
-	if err != nil {
-		return -1, err
-	}
-	_, err = tx.Exec(context.Background(), sql)
+	err = tx.QueryRow(context.Background(), `INSERT into "Pastebins" (content, user_id) VALUES ($1, $2) returning id`, pastebin.Content, userId).Scan(&id)
+
 	if err != nil {
 		return -1, err
 	}
@@ -156,5 +155,6 @@ func (p *postgres) AddUserPastebin(id int, interests []string) (int, error) {
 	if err := tx.Commit(context.Background()); err != nil {
 		return -1, err
 	}
-	return len(interests), nil
+	return id, nil
+
 }
