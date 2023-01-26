@@ -59,12 +59,14 @@ Retrieves a specific pastebin by ID
 ## `GET /api/v1/pastebins/user/:userID`
 Retrieves all pastebins created by a specific user
 
-## `POST /api/v1/users`
-Creates a new user
-
-
 ## `GET /api/v1/users`
 Retrieves a list of all users
+
+## `POST /api/v1/user`
+Creates a new user
+
+## `POST /api/v1/pastebin`
+Creates a new user
 
 Example response:
 ```json
