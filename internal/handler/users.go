@@ -54,29 +54,3 @@ func (h *Handler) CreateNewUser(c echo.Context) error {
 
 	return c.JSON(http.StatusCreated, Message{Data: fmt.Sprintf("user created with id : %d", id)})
 }
-
-/*
-func (h *Handler) AddUserPastebin(c echo.Context) error {
-	c.Request().Header.Add("Content-Type", "application/json")
-
-	id := -1
-	if err := echo.PathParamsBinder(c).Int("id", &id).BindError(); err != nil {
-		return echo.NewHTTPError(http.StatusBadRequest, "invalid path param")
-	}
-
-	if c.Request().ContentLength == 0 {
-		return echo.NewHTTPError(http.StatusBadRequest, "body is required for this method")
-	}
-
-	pastebin := new(datasource.Pastebin)
-	err := c.Bind(&pastebin)
-	if err != nil {
-		return echo.NewHTTPError(http.StatusBadRequest, "body not be valid")
-	}
-	count, err := h.DB.AddUserPastebin(id, pastebin)
-	if err != nil {
-		return echo.NewHTTPError(http.StatusBadRequest, "could not add user pastebin")
-	}
-	return c.JSON(http.StatusCreated, Message{Data: fmt.Sprintf("%d user interest added", count)})
-}
-*/
