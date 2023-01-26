@@ -1,5 +1,5 @@
 
-![Coverage](https://img.shields.io/badge/Coverage-1-red)
+![Coverage](https://img.shields.io/badge/Coverage-0-red)
 [![Go](https://github.com/mehkey/go-echo-pastebin-web-service/actions/workflows/go.yml/badge.svg)](https://github.com/mehkey/go-echo-pastebin-web-service/actions/workflows/go.yml)
 
 Go version of pastebin web service with postgresql database for CRUD using pgx, goku, echo.
