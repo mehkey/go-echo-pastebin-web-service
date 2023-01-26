@@ -88,6 +88,21 @@ func TestPostgres_GetAllUsers(t *testing.T) {
 		t.Errorf("want: %d, got: %d", want, got)
 	}
 }
+
+func TestPostgres_GetAllPastebins(t *testing.T) {
+	p := NewPostgres(pgpool)
+	pastebins, err := p.GetAllPastebins()
+	if err != nil {
+		t.Errorf("getalluser err=%s; want nil", err)
+	}
+	// not great for parallel tests.
+	want := 3 // not 500
+	got := len(pastebins)
+	if got != want {
+		t.Errorf("want: %d, got: %d", want, got)
+	}
+}
+
 func TestPostgres_GetUserByID_success(t *testing.T) {
 	p := NewPostgres(pgpool)
 	user, err := p.GetUserByID(1)
