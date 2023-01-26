@@ -66,8 +66,8 @@ func main() {
 
 	api.GET("/pastebins/user/:userID", h.GetPastebinsForUser)
 
-	api.POST("/users", h.CreateNewUser)
-	api.POST("/users/:id/pastebins", h.AddUserPastebin)
+	api.POST("/user", h.CreateNewUser)
+	api.POST("/user/:id/pastebin", h.AddUserPastebin)
 
 	port := "7999"
 
