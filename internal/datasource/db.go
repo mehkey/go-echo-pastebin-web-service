@@ -10,5 +10,5 @@ type DB interface {
 
 	//POST Services
 	CreateNewUser(*User) (int, error)
-	//AddUserPastebin(int, *Pastebin) (int, error)
+	AddUserPastebin(int, *Pastebin) (int, error)
 }
