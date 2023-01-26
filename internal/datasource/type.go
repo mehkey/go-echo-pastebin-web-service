@@ -1,10 +1,10 @@
 package datasource
 
 type User struct {
-	ID        int      `json:"id" db:"id"`
-	Name      string   `json:"name" db:"name"`
-	Email     string   `json:"email" db:"email"`
-	Pastebins []string `json:"pastebins,omitempty" db:"pastebins"`
+	ID        int        `json:"id" db:"id"`
+	Name      string     `json:"name" db:"name"`
+	Email     string     `json:"email" db:"email"`
+	Pastebins []Pastebin `json:"pastebins,omitempty" db:"pastebins"`
 }
 
 type Pastebin struct {
