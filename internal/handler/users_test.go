@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"bytes"
 	"encoding/json"
 	"net/http"
 	"net/http/httptest"
@@ -48,7 +49,7 @@ func TestHandler_GetUsersByID_success(t *testing.T) {
 }
 
 func TestHandler_GetUsersByID_failure(t *testing.T) {
-	m := &mock{pastebins: []datasource.Pastebin{pastebin}}
+	m := &mock{users: []datasource.User{user}}
 	h := NewHandler(m)
 	e := echo.New()
 	r := httptest.NewRequest(http.MethodGet, "/api/v1/user/5", nil)
@@ -62,7 +63,7 @@ func TestHandler_GetUsersByID_failure(t *testing.T) {
 }
 
 func TestHandler_GetUsersByID_failure_id(t *testing.T) {
-	m := &mock{pastebins: []datasource.Pastebin{pastebin}}
+	m := &mock{users: []datasource.User{user}}
 	h := NewHandler(m)
 	e := echo.New()
 	r := httptest.NewRequest(http.MethodGet, "/api/v1/user/", nil)
@@ -73,6 +74,31 @@ func TestHandler_GetUsersByID_failure_id(t *testing.T) {
 	c.SetParamValues("1")
 
 	assert.Error(t, h.GetUserByID(c), "should return error")
+}
+
+func TestHandler_CreateUser_Success(t *testing.T) {
+	m := &mock{users: []datasource.User{user}}
+	h := NewHandler(m)
+	e := echo.New()
+
+	s, _ := json.Marshal(userAdd)
+	b := bytes.NewBuffer(s)
+
+	r := httptest.NewRequest(http.MethodPost, "/api/v1/user", b)
+
+	r.Header.Set("Content-Type", "application/json")
+
+	w := httptest.NewRecorder()
+	c := e.NewContext(r, w)
+	c.SetPath("/api/v1/user")
+
+	if assert.NoError(t, h.CreateNewUser(c)) {
+		assert.Equal(t, http.StatusCreated, w.Code)
+		//var pastebin *datasource.Pastebin
+		//assert.NoError(t, json.Unmarshal(w.Body.Bytes(), &pastebin))
+		//assert.Equal(t, 1, pastebin.ID)
+	}
+
 }
 
 func (m *mock) GetAllUsers() ([]datasource.User, error) {
