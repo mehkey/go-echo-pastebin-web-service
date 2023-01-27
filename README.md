@@ -2,11 +2,8 @@
 ![Coverage](https://img.shields.io/badge/Coverage-69.2%25-yellow)
 [![Go](https://github.com/mehkey/go-echo-pastebin-web-service/actions/workflows/go.yml/badge.svg)](https://github.com/mehkey/go-echo-pastebin-web-service/actions/workflows/go.yml)
 
-Go version of pastebin web service with postgresql database for CRUD using pgx, goku, echo.
 
-
-# go-echo-pastebin-web-service
- Golang version of pastebin web service 
+# Go Echo Pastebin Web Service
 
 ## [Original Design Github Repo Link](https://github.com/mehkey/system-design/tree/main/designs/Pastebin)
 
