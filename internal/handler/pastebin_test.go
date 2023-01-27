@@ -31,6 +31,12 @@ var (
 		Name:      "Joe Boe",
 		Pastebins: []datasource.Pastebin{pastebin},
 	}
+	userAdd = datasource.User{
+		ID:        2,
+		Email:     "test2@test.com",
+		Name:      "Joe Balo",
+		Pastebins: nil,
+	}
 )
 
 func TestHandler_GetAllPastebins(t *testing.T) {
@@ -109,6 +115,26 @@ func TestHandler_AddUserPastebin_Success(t *testing.T) {
 		//assert.NoError(t, json.Unmarshal(w.Body.Bytes(), &pastebin))
 		//assert.Equal(t, 1, pastebin.ID)
 	}
+
+}
+
+func TestHandler_AddUserPastebin_Failure(t *testing.T) {
+	m := &mock{pastebins: []datasource.Pastebin{pastebin}}
+	h := NewHandler(m)
+	e := echo.New()
+
+	//s, _ := json.Marshal(pastebin)
+	//b := nil //bytes.NewBuffer(s)
+
+	r := httptest.NewRequest(http.MethodPost, "/api/v1/user/1/pastebin", nil)
+
+	r.Header.Set("Content-Type", "application/json")
+
+	w := httptest.NewRecorder()
+	c := e.NewContext(r, w)
+	c.SetPath("/api/v1/user/1/pastebin")
+
+	assert.Error(t, h.AddUserPastebin(c), "should return error")
 
 }
 
