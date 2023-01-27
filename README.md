@@ -19,8 +19,6 @@
 User should be able to set a custom time on the pastebin
 7. All the content in pastebin is Text only.
 8. Is there a character limit? Maximum words is 1000 words.
-9. How many users are create a pastebin every day?
-10.  The URL link should be of uniform length. 10 Characters.
 
 
 
@@ -55,13 +53,13 @@ Example response:
         "id": 1,
         "name": "John Doe",
         "email": "johndoe@example.com",
-        "pastebins": ["pb1", "pb2"]
+        "pastebins": [1, 2]
     },
     {
         "id": 2,
         "name": "Jane Smith",
         "email": "janesmith@example.com",
-        "pastebins": ["pb3", "pb4"]
+        "pastebins": [3, 4]
     }
 ]
 ```
@@ -96,7 +94,7 @@ Example response:
     "id": 1,
     "name": "John Doe",
     "email": "johndoe@example.com",
-    "pastebins": ["pb1", "pb2"]
+    "pastebins": [1, 2]
 }
 ```
 
