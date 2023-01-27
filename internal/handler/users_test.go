@@ -61,6 +61,20 @@ func TestHandler_GetUsersByID_failure(t *testing.T) {
 	assert.Error(t, h.GetUserByID(c), "should return error")
 }
 
+func TestHandler_GetUsersByID_failure_id(t *testing.T) {
+	m := &mock{pastebins: []datasource.Pastebin{pastebin}}
+	h := NewHandler(m)
+	e := echo.New()
+	r := httptest.NewRequest(http.MethodGet, "/api/v1/user/", nil)
+	w := httptest.NewRecorder()
+	c := e.NewContext(r, w)
+	c.SetPath("/api/v1/user/")
+	c.SetParamNames("it")
+	c.SetParamValues("1")
+
+	assert.Error(t, h.GetUserByID(c), "should return error")
+}
+
 func (m *mock) GetAllUsers() ([]datasource.User, error) {
 
 	return []datasource.User{user}, nil
