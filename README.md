@@ -26,21 +26,7 @@ User should be able to set a custom time on the pastebin
 10.  The URL link should be of uniform length. 10 Characters.
 
 
-# Data Schema
 
-### Users:
-- user_id (pk) 
-- user_name
-- email_address
-- password (hashed)
-- creation_date
-
-### Pastebin
-- pastebin_id (pk)
-- content (1000 words) 
-- password (optional)
-- creation_date
-- user_id (creator) 
 
 # API 
 
@@ -192,6 +178,25 @@ Example Response:
     "user_id": 1
 }
 ```
+
+# Data Schema
+
+### Users:
+- "id" SERIAL PRIMARY KEY
+- "name" varchar
+- "email" varchar
+- "password" varchar
+- "created_at" timestamp DEFAULT CURRENT_TIMESTAMP
+- "updated_at" timestamp DEFAULT CURRENT_TIMESTAMP
+
+
+### Pastebins
+- "id" SERIAL PRIMARY KEY
+- "content" varchar
+- "user_id" int
+- "password" varchar
+- "created_at" timestamp DEFAULT CURRENT_TIMESTAMP
+- "updated_at" timestamp DEFAULT CURRENT_TIMESTAMP
 
 
 # go-pastebin-web-service
