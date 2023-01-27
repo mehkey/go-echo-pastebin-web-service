@@ -122,3 +122,77 @@ func TestPostgres_GetUserByID_failure(t *testing.T) {
 	assert.Error(t, err, "should return error")
 	assert.Nil(t, user, "user should be nil")
 }
+
+func TestPostgres_GetPastebinByID_success(t *testing.T) {
+	p := NewPostgres(pgpool)
+	user, err := p.GetPastebinByID(1)
+	if err != nil {
+		t.Errorf("getuserbyid(1) err=%s; want nil", err)
+	}
+	want := 1
+	got := user.ID
+	if got != want {
+		t.Errorf("want: %d, got: %d", want, got)
+	}
+}
+
+func TestPostgres_GetPastebinByID_failure(t *testing.T) {
+	p := NewPostgres(pgpool)
+	user, err := p.GetPastebinByID(-1) // this should return nil user
+	assert.Error(t, err, "should return error")
+	assert.Nil(t, user, "user should be nil")
+}
+
+func TestPostgres_GetPastebinsForUser(t *testing.T) {
+	p := NewPostgres(pgpool)
+	pastebins, err := p.GetPastebinsForUser(1)
+	if err != nil {
+		t.Errorf("getalluser err=%s; want nil", err)
+	}
+	// not great for parallel tests.
+	want := 3 // not 500
+	got := len(pastebins)
+	if got != want {
+		t.Errorf("want: %d, got: %d", want, got)
+	}
+
+}
+
+func TestPostgres_CreateNewUser_success(t *testing.T) {
+	p := NewPostgres(pgpool)
+	var user User
+	user.Email = "test@gmail.com"
+	user.ID = 10
+	user.Pastebins = nil
+	id, err := p.CreateNewUser(&user)
+
+	if err != nil {
+		t.Errorf("CreateNewUser err=%s; want nil", err)
+	}
+	dontwant := -1
+
+	if id == dontwant {
+		t.Errorf("dontwant: %d, got: %d", dontwant, id)
+	}
+}
+
+func TestPostgres_CreateNewPastebinForUser_success(t *testing.T) {
+	p := NewPostgres(pgpool)
+
+	var pastebin Pastebin
+
+	pastebin.Content = "Hello world"
+	pastebin.ID = 4
+	pastebin.UserID = 1
+
+	id, err := p.AddUserPastebin(1, &pastebin)
+
+	if err != nil {
+		t.Errorf("AddUserPastebin err=%s; want nil", err)
+	}
+	dontwant := -1
+
+	if id == dontwant {
+		t.Errorf("dontwant: %d, got: %d", dontwant, id)
+	}
+}
