@@ -158,6 +158,21 @@ func TestPostgres_GetPastebinsForUser(t *testing.T) {
 
 }
 
+func TestPostgres_GetPastebinsForUser_Zero(t *testing.T) {
+	p := NewPostgres(pgpool)
+	pastebins, err := p.GetPastebinsForUser(5)
+	if err != nil {
+		t.Errorf("getalluser err=%s; want nil", err)
+	}
+	// not great for parallel tests.
+	want := 0 // not 500
+	got := len(pastebins)
+	if got != want {
+		t.Errorf("want: %d, got: %d", want, got)
+	}
+
+}
+
 func TestPostgres_CreateNewUser_success(t *testing.T) {
 	p := NewPostgres(pgpool)
 	var user User
