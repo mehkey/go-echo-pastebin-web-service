@@ -234,10 +234,10 @@ Example Response:
 ![Pastebin Design](https://github.com/mehkey/system-design/tree/main/designs/Pastebin)/Untitled9.png)
 
 
+## Commands
 
 ```
 
-//commands
 go mod tidy
 
 go build ./cmd/web
