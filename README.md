@@ -2,6 +2,7 @@
 ![Coverage](https://img.shields.io/badge/Coverage-75.9%25-brightgreen)
 [![Go](https://github.com/mehkey/go-echo-pastebin-web-service/actions/workflows/go.yml/badge.svg)](https://github.com/mehkey/go-echo-pastebin-web-service/actions/workflows/go.yml)
 
+CI/CD Badge created using using [Github Actions](https://github.com/mehkey/go-echo-pastebin-web-service/actions)
 
 # Go Echo Pastebin Web Service
 
