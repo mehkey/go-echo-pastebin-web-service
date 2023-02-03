@@ -231,7 +231,8 @@ Example Response:
 * [go.mod](./go-pastebin-web-service/go.mod)
 
 
-![Pastebin Design](https://github.com/mehkey/system-design/tree/main/designs/Pastebin)/Untitled9.png)
+## [Pastebin System Design](https://github.com/mehkey/system-design/tree/main/designs/Pastebin)
+![Pastebin Design](https://github.com/mehkey/system-design/tree/main/designs/Pastebin/Untitled9.png)
 
 
 ## Commands
