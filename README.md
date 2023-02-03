@@ -232,7 +232,8 @@ Example Response:
 
 
 ## [Pastebin System Design](https://github.com/mehkey/system-design/tree/main/designs/Pastebin)
-![Pastebin Design](https://github.com/mehkey/system-design/tree/main/designs/Pastebin/Untitled9.png)
+
+![Pastebin Design](https://raw.githubusercontent.com//mehkey/system-design/tree/main/designs/Pastebin/Untitled9.png)
 
 
 ## Commands
