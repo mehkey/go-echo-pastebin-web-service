@@ -1,12 +1,9 @@
 
-![Coverage](https://img.shields.io/badge/Coverage-69.2%25-yellow)
+![Coverage](https://img.shields.io/badge/Coverage-75.9%25-brightgreen)
 [![Go](https://github.com/mehkey/go-echo-pastebin-web-service/actions/workflows/go.yml/badge.svg)](https://github.com/mehkey/go-echo-pastebin-web-service/actions/workflows/go.yml)
 
-Go version of pastebin web service with postgresql database for CRUD using pgx, goku, echo.
 
-
-# go-echo-pastebin-web-service
- Golang version of pastebin web service 
+# Go Echo Pastebin Web Service
 
 ## [Original Design Github Repo Link](https://github.com/mehkey/system-design/tree/main/designs/Pastebin)
 
@@ -22,8 +19,6 @@ Go version of pastebin web service with postgresql database for CRUD using pgx, 
 User should be able to set a custom time on the pastebin
 7. All the content in pastebin is Text only.
 8. Is there a character limit? Maximum words is 1000 words.
-9. How many users are create a pastebin every day?
-10.  The URL link should be of uniform length. 10 Characters.
 
 
 
@@ -58,13 +53,13 @@ Example response:
         "id": 1,
         "name": "John Doe",
         "email": "johndoe@example.com",
-        "pastebins": ["pb1", "pb2"]
+        "pastebins": [1, 2]
     },
     {
         "id": 2,
         "name": "Jane Smith",
         "email": "janesmith@example.com",
-        "pastebins": ["pb3", "pb4"]
+        "pastebins": [3, 4]
     }
 ]
 ```
@@ -99,7 +94,7 @@ Example response:
     "id": 1,
     "name": "John Doe",
     "email": "johndoe@example.com",
-    "pastebins": ["pb1", "pb2"]
+    "pastebins": [1, 2]
 }
 ```
 
@@ -237,10 +232,10 @@ Example Response:
 ![Pastebin Design](https://github.com/mehkey/system-design/tree/main/designs/Pastebin)/Untitled9.png)
 
 
+## Commands
 
 ```
 
-//commands
 go mod tidy
 
 go build ./cmd/web
