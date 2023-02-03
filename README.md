@@ -257,3 +257,15 @@ go test -v ./...
 psql -U postgres -h localhost postgres
 
 ```
+
+
+## [Front-End React NEXT Typescript](https://github.com/mehkey/next-typescript-pastebin)
+
+
+![./Screen1](./image/screen1.png)
+
+![./Screen2](./image/screen2.png)
+
+![./Screen3](./image/screen3.png)
+
+
