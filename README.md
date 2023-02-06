@@ -45,25 +45,9 @@ Retrieves all pastebins created by a specific user
 Creates a new user
 
 ## `POST /api/v1/pastebin`
-Creates a new user
+Creates a new pastebin
 
-Example response:
-```json
-[
-    {
-        "id": 1,
-        "name": "John Doe",
-        "email": "johndoe@example.com",
-        "pastebins": [1, 2]
-    },
-    {
-        "id": 2,
-        "name": "Jane Smith",
-        "email": "janesmith@example.com",
-        "pastebins": [3, 4]
-    }
-]
-```
+# API Details
 
 ## `GET /api/v1/pastebins`
 Retrieves a list of all pastebins
